@@ -24,6 +24,6 @@ This is an e-commerce Website , designed using html and css.
 
 
 ## Follow Me on
-1. LinkedIn - [vijaythapa](https://www.linkedin.com/in/edward-oviasogie-870941240 "Edward Oviasogie on LinkedIn")
+1. LinkedIn - [Edward Oviasogie](https://www.linkedin.com/in/edward-oviasogie-870941240 "Edward Oviasogie on LinkedIn")
 2. GitHub - [dragseddie@gmail.com](https://github.com/T-E-G-A "Edward Oviasogie on Github")
 
