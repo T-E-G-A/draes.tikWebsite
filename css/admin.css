@@ -1,0 +1,125 @@
+/* 
+    Author:Edward;
+    Theme:dræstɪkWeb Admin;
+    version:1.0;
+*/
+@import url('https://fonts.cdnfonts.com/css/american-captain-2');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family:'Bebas neue', sans-serif ;
+}
+
+.wrapper{
+    
+    padding: 1%;
+    width: 80%;
+    margin: 0 auto;
+}
+.text-center{
+    text-align: center;
+}
+.clearfix{
+    float: none;
+    clear: both;
+}
+.tbl-full{
+    width: 100%;
+}
+
+.tbl-30{
+    width: 30%;
+}
+
+table tr th{
+    border-bottom: 1px solid black;
+    padding: 1%;
+    text-align: left;
+}
+
+table tr td{
+    padding: 1%;
+}
+
+.btn-primary{
+    background-color: #2f3542 ;
+    padding: 1%;
+    color: lightcyan;
+    text-decoration: none;
+    
+}
+
+.btn-primary:hover{
+    background-color:black;
+}
+
+.btn-secondary{
+    background-color:  lightseagreen;
+    padding: 1%;
+    color: lightcyan;
+    text-decoration: none;
+    
+}
+
+.btn-secondary:hover{
+    background-color: teal;
+}
+
+.btn-tertiary{
+    background-color: #ff6b81 ;
+    padding: 1%;
+    color: lightcyan;
+    text-decoration: none;
+    
+}
+
+.btn-tertiary:hover{
+    background-color:#ff4757;
+}
+
+/* CSS for Menu */
+.menu{
+    border-bottom: 1px solid grey;
+}
+
+.menu ul{
+    list-style: none;
+
+}
+.menu ul li{
+    display: inline;
+    padding: 1%;
+
+}
+
+.menu ul li a{
+    text-decoration: none;
+    font-weight:  bold;
+    color:  #2f3542;
+}
+
+.menu ul li a:hover{
+    color: black;
+}
+/*css for main-content*/
+
+.main-content{
+    background-color: #f1f2f6;
+    padding: 3%;
+}
+.col-4{
+    width: 18%;
+    background-color: white;
+    margin: 1%;
+    padding: 2%;
+    float: left;
+}
+
+/* CSS for Footer */
+.footer{
+    background-color: #2f3542;
+    color: lightcyan;
+}
