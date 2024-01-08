@@ -80,6 +80,14 @@ table tr td{
     background-color:#ff4757;
 }
 
+.success{
+    color: lightseagreen;
+}
+
+.danger{
+    color: #ff6b81;
+}
+
 /* CSS for Menu */
 .menu{
     border-bottom: 1px solid grey;

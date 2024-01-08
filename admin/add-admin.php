@@ -79,7 +79,7 @@
         //Data Inserted
         //echo "Data Inserted";
         //Create a Session Variabe to Display Message
-        $_SESSION['add']="Admin added successfully";
+        $_SESSION['add']="<div class='success'>Admin added successfully</div>";
         //Redirect Page to manage admin
         header("location:".SITEURL.'admin/manage-admin.php');
 
@@ -88,7 +88,7 @@
         //Failed to insert data
         //echo "Failed to insert data";
         //Create a Session Variabe to Display Message
-        $_SESSION['add']="Failed to add admin";
+        $_SESSION['add']="<div class='error'>Failed to add admin</div>";
         //Redirect Page to add admin
         header("location:".SITEURL.'admin/add-admin.php');
        }
