@@ -1,4 +1,5 @@
-
+<?php include('../config/constants.php');
+?>
 <html>
 <head>
   <title>dræstɪkWeb Home Page</title>
