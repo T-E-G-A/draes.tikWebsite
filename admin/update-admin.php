@@ -59,7 +59,7 @@
 
             <tr>
                 <td colspan="2">
-                    <input type="hidden" name="id" value=<?php echo $id?>>
+                    <input type="hidden" name="id" value="<?php echo $id?>">
                     <input type="submit" name="submit" value="Update Admin" class="btn-secondary">
                 </td>
             </tr>
