@@ -3,47 +3,104 @@
 <div class="main-content">
     <div class="wrapper">
         <h1>Manage Category</h1>
-        <br><br><br>
-          <!-- Button to add admin-->
-          <a href="#" class="btn-primary">Add Category</a>
+        <br><br>
+        <?php
+
+          if(isset($_SESSION['add']))//checking if the session is set or not
+            {
+              echo $_SESSION['add'];// displaying session message
+              unset($_SESSION['add']);//removing session message
+            }
+        ?>
+        <br><br>
+
+
+          <!-- Button to add catgeory-->
+          <a href="<?php echo SITEURL;?>admin/add-category.php" class="btn-primary">Add Category</a>
        <br><br><br>
           
           <table class="tbl-full">
             <tr>
               <th>S.N</th>
-              <th>Full Name</th>
-              <th>username</th>
+              <th>title</th>
+              <th>Image</th>
+              <th>Featured</th>
+              <th>Active</th>
               <th>Actions</th>
-            </tr>
-            <tr>
-              <td>1.</td>
-              <td>John Doe</td>
-              <td>JD</td>
-              <td>
-              <a href="#" class="btn-secondary">Update Category</a>
-              <a href="#" class="btn-tertiary">Delete Category</a>
-              </td>
+
+
             </tr>
 
-            <tr>
-              <td>1.</td>
-              <td>John Doe</td>
-              <td>JD</td>
-              <td>
-              <a href="#" class="btn-secondary">Update Category</a>
-              <a href="#" class="btn-tertiary">Delete Category</a>
-              </td>
-            </tr>
+            <?php
+            
+            //query to get all category data from db
+            $sql = "SELECT * FROM tbl_category";
 
-            <tr>
-              <td>1.</td>
-              <td>John Doe</td>
-              <td>JD</td>
-              <td>
-              <a href="#" class="btn-secondary">Update Category</a>
-              <a href="#" class="btn-tertiary">Delete Category</a>
-              </td>
-            </tr>
+            //execute query
+            $res = mysqli_query($conn, $sql);
+
+            //count rows
+            $count = mysqli_num_rows($res);
+
+            $sn=1; //create a varaible and assign the value
+
+            //check if data is in database
+            if($count>0)
+            {
+              //data present in database
+              //get data and display
+              while($row=mysqli_fetch_assoc($res))
+              {
+                $id = $row['id'];
+                $title = $row['title'];
+                $image_name = $row['image_name'];
+                $featured = $row['featured'];
+                $active = $row['active'];
+
+                ?>
+
+                <tr>
+                  <td><?php echo $sn++;?></td>
+                  <td><?php echo $title;?></td>
+
+                  <td>
+                    <?php 
+                          //check whether image name is available or not
+                          if($image_name!="")
+                          {
+                            //display image
+                            ?>
+                            <img src="<?php echo SITEURL; ?>images/category/<?php echo $image_name; ?>" width="100px">
+
+                            <?php
+                          }
+                          else{
+                            // display message
+                            echo "<div class='error'>No added image</div>";
+
+                          }
+                    ?>
+                  </td>
+
+                  <td><?php echo $featured;?></td>
+                  <td><?php echo $active;?></td>
+                  <td>
+                  <a href="#" class="btn-secondary">Update Category</a>
+                  <a href="#" class="btn-tertiary">Delete Category</a>
+                  </td>
+               </tr>
+
+                <?php
+
+
+              }
+            }
+            
+            ?>
+
+            
+
+           
           </table>
     </div>
     
