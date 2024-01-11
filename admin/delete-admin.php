@@ -5,18 +5,18 @@
     //1.get the id of admin  to the deleted
     $id = $_GET['id'];
 
-    //2.create sql query to delete admin
+    //2.sql query to delete admin
     $sql = "DELETE FROM tbl_admin WHERE id=$id";
 
     //execute the query
     $res = mysqli_query($conn, $sql);
 
-    //check whether the query executed successfully or not
+    //check whether the query executed successfully
     if($res==TRUE)
     {
         //query executed successfully and admin deleted
         // echo "Admin deleted";
-        //Create session variable t display message 
+        //Create session variable to display message 
         $_SESSION['delete'] = "<div class='danger'>Admin has been deleted</div>";
         //redirect to manage admin page
         header('location:'.SITEURL.'admin/manage-admin.php');

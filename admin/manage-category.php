@@ -11,6 +11,16 @@
               echo $_SESSION['add'];// displaying session message
               unset($_SESSION['add']);//removing session message
             }
+          if(isset($_SESSION['delete']))
+            {
+              echo $_SESSION['delete'];
+              unset($_SESSION['delete']);
+            }
+          if(isset($_SESSION['remove']))
+            {
+              echo $_SESSION['remove'];
+              unset($_SESSION['remove']);
+            }
         ?>
         <br><br>
 
@@ -70,7 +80,7 @@
                           {
                             //display image
                             ?>
-                            <img src="<?php echo SITEURL; ?>images/category/<?php echo $image_name; ?>" width="100px">
+                            <img src="<?php echo SITEURL; ?>images/category/<?php echo $image_name; ?>" width="100px" height="80px">
 
                             <?php
                           }
@@ -86,7 +96,7 @@
                   <td><?php echo $active;?></td>
                   <td>
                   <a href="#" class="btn-secondary">Update Category</a>
-                  <a href="#" class="btn-tertiary">Delete Category</a>
+                  <a href="<?php echo SITEURL; ?>admin/delete-category.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-tertiary">Delete Category</a>
                   </td>
                </tr>
 

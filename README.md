@@ -8,6 +8,7 @@ This is an e-commerce Website , designed using html,css and php.
 ## Technologies Used
 1. HTML5
 2. CSS3
+3. PHP8
 
 
 ## Pages on this Complete Free Template
