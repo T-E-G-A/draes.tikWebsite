@@ -37,7 +37,9 @@
             }
             else
             {
+
                 //redirect to manage admin page
+                $_SESSION['no-cat-found'] = "<div class='danger'>Admin not Found </div>";
                 header('location:'.SITEURL.'admin/manage-admin.php');
             }
          }
@@ -95,7 +97,7 @@
             if($res==true)
             {
                 //query executed and admin updated
-                $_SESSION['update'] = "<div class='success'>Admin has been updated</div>";
+                $_SESSION['update'] = "<div class='success'>Admin Updated Successfully</div>";
                 //redirect to manage admin page
                 header('location:'.SITEURL.'admin/manage-admin.php');
             }

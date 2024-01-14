@@ -44,25 +44,25 @@ table tr td{
     padding: 1%;
 }
 
-.btn-primary{
-    background-color: #2f3542 ;
-    padding: 1%;
-    color: lightcyan;
-    text-decoration: none;
-    
+.btn-primary {
+  background-color: #2f3542;
+  padding: 1%;
+  color: lightcyan;
+  text-decoration: none;
+  transition: background-color 0.3s ease; 
 }
 
-
-.btn-primary:hover{
-    background-color:black;
+.btn-primary:hover {
+  background-color: black;
 }
+
 
 .btn-secondary{
     background-color:  lightseagreen;
     padding: 1%;
     color: lightcyan;
     text-decoration: none;
-    
+    transition: background-color 0.3s ease;    
 }
 
 .btn-secondary:hover{
@@ -74,6 +74,8 @@ table tr td{
     padding: 1%;
     color: lightcyan;
     text-decoration: none;
+    transition: background-color 0.3s ease; 
+
     
 }
 
@@ -229,9 +231,10 @@ table tr td{
     color: #666666;
   }
   .author_link a{
-    color: #2691d9;
+    color: #66c2ff;
     text-decoration: none;
   }
   .author_link a:hover{
-    text-decoration: underline;
+    transition: color 0.3s ease;
+    color:#2691d9; 
   }

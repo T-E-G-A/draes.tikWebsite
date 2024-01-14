@@ -38,6 +38,12 @@
       echo $_SESSION['change-pwd'];
       unset($_SESSION['change-pwd']);
     }
+    
+    if(isset($_SESSION['no-cat-found']))
+    {
+      echo $_SESSION['no-cat-found'];
+      unset($_SESSION['no-cat-found']);
+    }
     ?>
 
     <br><br><br>
@@ -96,6 +102,6 @@
     </table>
   </div>
 </div>
+
+
 <?php include('partials/footer.php'); ?>
-</body>
-</html>

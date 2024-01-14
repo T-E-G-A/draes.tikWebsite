@@ -1,4 +1,6 @@
-<?php include('partials/menu.php');?>
+<?php include('partials/menu.php'); ?>
+<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+
 <div class="main-content">
   <div class="wrapper">
 
@@ -7,181 +9,121 @@
     <br><br>
 
     <?php
+      // Display success or error messages if set in session
+      if(isset($_SESSION['add'])) {
+        echo $_SESSION['add'];
+        unset($_SESSION['add']);
+      }
 
-        if(isset($_SESSION['add']))//checking if the session is set or not
-          {
-            echo $_SESSION['add'];// displaying session message
-            unset($_SESSION['add']);//removing session message
-          }
-        
-         if(isset($_SESSION['upload']))//checking if the session is set or not
-          {
-            echo $_SESSION['upload'];// displaying session message
-            unset($_SESSION['upload']);//removing session message
-          }
+      if(isset($_SESSION['upload'])) {
+        echo $_SESSION['upload'];
+        unset($_SESSION['upload']);
+      }
     ?>
 
     <br><br>
- <!-- add category form starts here-->
+    
+    <!-- add category form starts here-->
     <form action="" method="POST" enctype="multipart/form-data">
 
       <table class="tbl-30">
         <tr>
           <td>Title:</td>
           <td>
-            <input type="text" name="title" placeholder="Category Title">
+            <input type="text" name="title" placeholder="Category Title" style="font-family: 'Teko', sans serif;" required>
           </td>
         </tr>
 
         <tr>
           <td>Select Image:</td>
           <td>
-            <input type="file" name="image">
+            <input type="file" name="image" >
           </td>
         </tr>
 
         <tr>
           <td>Featured:</td>
           <td>
-            <input type="radio" name="featured" value="Yes"> Yes
-            <input type="radio" name="featured" value="No"> No
+            <input type="radio" name="featured" value="Yes" required> Yes
+            <input type="radio" name="featured" value="No" required> No
           </td>
         </tr>
 
         <tr>
           <td>Active:</td>
           <td>
-            <input type="radio" name="active" value="Yes"> Yes
-            <input type="radio" name="active" value="No"> No
+            <input type="radio" name="active" value="Yes" required> Yes
+            <input type="radio" name="active" value="No" required> No
           </td>
         </tr>
 
         <tr>
-            <td colspan="2">
-                <input type="submit" name="submit" value="Add Category" class="btn-secondary">
-            </td>
+          <td colspan="2">
+            <input type="submit" name="submit" value="Add Category" class="btn-secondary">
+          </td>
         </tr>
-
-
       </table>
+    </form>
+    <!-- add category form ends here-->
 
-      </form>
-      <!-- add category form ends here-->
+    <?php
+      // Process form submission
+      if(isset($_POST['submit'])) {
+        $title = $_POST['title'];
+        
+        $featured = isset($_POST['featured']) ? $_POST['featured'] : "No";
+        $active = isset($_POST['active']) ? $_POST['active'] : "No";
 
-      <?php
-      
-            //check whether the submit button is clicked
-            if(isset($_POST['submit']))
+        if(isset($_FILES['image']['name'])) {
+          $image_name = $_FILES['image']['name'];
+
+          if($image_name!="") {
+            // Generate a unique image name
+            $ext = end(explode('.', $image_name));
+            $image_name = "Clothes_category".rand(000,999).'.'.$ext;
+
+            // Set source and destination paths for image upload
+            $source_path = $_FILES['image']['tmp_name'];
+            $destination_path = "../images/category/" . $image_name;
+
+            // Move the uploaded image to the destination folder
+            $upload = move_uploaded_file($source_path, $destination_path);
+
+            if($upload==false) 
             {
-                // echo "clicked";
-
-                //1.get value from catgeory form
-                $title = $_POST['title'];
-                
-                //for radio input type to check if the button is clicked
-                if(isset($_POST['featured']))
-                {
-                    //get the value from form
-                    $featured = $_POST['featured'];
-                }
-                else
-                {
-                    //set the default value
-                    $featured = "No";
-                }
-
-                if(isset($_POST['active']))
-                {
-                    //get the value from form
-                    $active = $_POST['active'];
-                }
-                else
-                {
-                    //set the default value
-                    $active = "No";
-                }
-            
-            //check whether the image is selected or not and set the value for image name
-            // print_r($_FILES['image']);
-
-            // die();//break the code here
-            if(isset($_FILES['image']['name']))
-            {
-                //upload image
-                //to upload images, image name, source path and destination path is needed
-                $image_name = $_FILES['image']['name'];
-                //auto rename image
-                //get the extension of image (jpg,png,gif,etc) e.g "logo.png"
-                $ext = end(explode('.', $image_name));
-
-                //rename image
-                $image_name = "Clothes_category".rand(000,999).'.'.$ext;
-
-
-
-                $source_path = $_FILES['image']['tmp_name'];
-                $destination_path = "../images/category/" . $image_name;
-
-
-                //upload image query
-                $upload = move_uploaded_file($source_path,$destination_path);
-
-                //check if image is uploaded or not
-                //if not uploaded then stop the process and redirect with error messagw
-                if($upload==false)
-                {
-                    //set message
-                    $_SESSION['upload']="<div class='danger'>Failed to upload image</div>";
-                    //Redirect Page to add category
-                    header("location:".SITEURL.'admin/add-category.php');
-                    //stop the process
-                    die();
-                    }
-
+              $_SESSION['upload']="<div class='danger'>Failed to upload image</div>";
+              header("location:".SITEURL.'admin/add-category.php');
+              die();
             }
-            else
-            {
-                //don't upload image and set image_value as blank
-                $image_name="";
-            }
+          }
+        }
+        else {
+          $image_name="";
+        }
 
+        // Insert category details into the database
+        $sql ="INSERT INTO tbl_category SET
+          title='$title',
+          image_name='$image_name',
+          featured='$featured',
+          active='$active'
+        ";
 
-            //2.create sql query to insert data into db
-            $sql ="INSERT INTO tbl_category SET
-                title='$title',
-                image_name='$image_name',
-                featured='$featured',
-                active='$active'
-                ";
+        $res=mysqli_query($conn,$sql);
 
-            //3.execute the query and save in db
-            $res=mysqli_query($conn,$sql);
-
-            //4.check whether the query is executed or not
-            if($res==true)
-            {
-                //query executed and category added
-                $_SESSION['add']="<div class='success'>Category added successfully</div>";
-                 //Redirect Page to manage category
-                header("location:".SITEURL.'admin/manage-category.php');
-
-            }
-            else
-            {
-                //failed to add category                
-                //Create a Session Variabe to Display Message
-                $_SESSION['add']="<div class='danger'>Failed to add category</div>";
-                //Redirect Page to add category
-                header("location:".SITEURL.'admin/add-category.php');
-                    
-            }
-                
-            }
-      
-      ?>
+        // Check if the insertion was successful and redirect accordingly
+        if($res==true) {
+          $_SESSION['add']="<div class='success'>Category Added Successfully</div>";
+          header("location:".SITEURL.'admin/manage-category.php');
+        }
+        else {
+          $_SESSION['add']="<div class='danger'>Failed to add category</div>";
+          header("location:".SITEURL.'admin/add-category.php');
+        }
+      }
+    ?>
 
   </div>
 </div>
 
-
-<?php include('partials/footer.php');?>
+<?php include('partials/footer.php'); ?>

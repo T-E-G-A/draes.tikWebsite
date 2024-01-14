@@ -21,6 +21,34 @@
               echo $_SESSION['remove'];
               unset($_SESSION['remove']);
             }
+          if(isset($_SESSION['error']))
+            {
+              echo $_SESSION['error'];
+              unset($_SESSION['error']);
+            }
+          if(isset($_SESSION['no-cat-found']))
+            {
+              echo $_SESSION['no-cat-found'];
+              unset($_SESSION['no-cat-found']);
+            }
+
+          if(isset($_SESSION['update']))
+            {
+              echo $_SESSION['update'];
+              unset($_SESSION['update']);
+            }
+
+          if(isset($_SESSION['upload']))
+            {
+              echo $_SESSION['upload'];
+              unset($_SESSION['upload']);
+            }
+          
+          if(isset($_SESSION['failed-remove']))
+            {
+              echo $_SESSION['failed-remove'];
+              unset($_SESSION['failed-remove']);
+            }
         ?>
         <br><br>
 
@@ -86,7 +114,7 @@
                           }
                           else{
                             // display message
-                            echo "<div class='error'>No added image</div>";
+                            echo "<div>No added image</div>";
 
                           }
                     ?>
@@ -95,7 +123,7 @@
                   <td><?php echo $featured;?></td>
                   <td><?php echo $active;?></td>
                   <td>
-                  <a href="#" class="btn-secondary">Update Category</a>
+                  <a href="<?php echo SITEURL; ?>admin/update-category.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-secondary">Update Category</a>
                   <a href="<?php echo SITEURL; ?>admin/delete-category.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-tertiary">Delete Category</a>
                   </td>
                </tr>

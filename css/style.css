@@ -9,13 +9,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 
+@font-face {
+    font-family: 'Roverback'; /* Specify a unique name for your font */
+    src: url('fonts/roverback.otf') format('opentype');
+}
 
+/* Use the custom font in your styles */
 
 
 *{
     margin: 0 0;
     padding: 0 0;
     font-family: 'bebas neue', sans-serif;
+    
 }
 
 .container{
@@ -53,6 +59,7 @@
 a{
     color:#2f3542;
     text-decoration: none;
+    
 }
 a:hover{
     color:black;
@@ -69,9 +76,11 @@ a:hover{
     color: lightcyan;
     cursor: pointer;
     font-family: 'bebas neue', sans-serif;
+    transition: background-color 0.3s ease; 
+
 }
 .btn-primary:hover{
-    color: white;
+    color: lightcyan;
     background-color: black;
 }
 .btn-tertiary{
@@ -79,19 +88,24 @@ a:hover{
     color: #2f3542;
     cursor: pointer;
     font-family: 'Lobster', sans-serif;
+    transition: background-color 0.3s ease; 
+
+}
+
+.btn-tertiary:hover {
+    background-color:  #66c2ff;
 }
 h2{
     color: #2f3542;
     font-size: 3rem;
     margin-bottom: 2%;
-    font-family: 'Lobster', sans-serif;
+    font-family: 'Roverback', sans-serif;
 }
 h3{
     font-size: 1.5rem;
-    font-family: 'Lobster', sans-serif;
-}
+    font-family: 'Roverback', sans-serif;}
 h4{
-    font-family: 'Lobster', sans-serif;
+    font-family: 'Roverback', sans-serif;
     font-size: 1.8rem;
 }
 .float-container{
@@ -128,6 +142,7 @@ fieldset{
     display: inline;
     padding: 1%;
     font-weight: bold;
+    
     
 }
 
@@ -202,9 +217,9 @@ fieldset{
 }
 
 .clothes-price{
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin: 2% 0;
-    font-family: 'Lobster', sans-serif;
+    font-family: 'bebas', sans-serif;
 }
 .clothes-detail{
     font-size: 1rem;

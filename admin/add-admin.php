@@ -21,17 +21,17 @@
         <table class="tbl-30">
             <tr>
                 <td>Full Name:</td>
-                <td><input type="text" name="full_name" placeholder="Enter Your Name" style="font-family:'Teko', sans serif; width: 8rem;"></td>
+                <td><input type="text" name="full_name" placeholder="Enter Your Name" style="font-family:'Teko', sans serif; width: 8rem;" required></td>
             </tr>
 
             <tr>
                 <td>Username:</td>
-                <td><input type="text" name="username" placeholder="Enter Your Username" style="font-family:'Teko', sans serif; width: 8rem;"></td>
+                <td><input type="text" name="username" placeholder="Enter Your Username" style="font-family:'Teko', sans serif; width: 8rem;" required></td>
             </tr>
 
             <tr>
                 <td>Password:</td>
-                <td><input type="password" name="password" placeholder="Enter Your Password" style="font-family:'Teko', sans serif; width: 8rem;"></td>
+                <td><input type="password" name="password" placeholder="Enter Your Password" style="font-family:'Teko', sans serif; width: 8rem;" required></td>
             </tr>
 
             <tr>
@@ -79,7 +79,7 @@
         //Data Inserted
         //echo "Data Inserted";
         //Create a Session Variabe to Display Message
-        $_SESSION['add']="<div class='success'>Admin added successfully</div>";
+        $_SESSION['add']="<div class='success'>Admin Added Successfully</div>";
         //Redirect Page to manage admin
         header("location:".SITEURL.'admin/manage-admin.php');
 
