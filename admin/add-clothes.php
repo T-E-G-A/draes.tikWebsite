@@ -235,19 +235,19 @@
                 // Image is Selected
                 // A. Rename the Image
                 // Get the extension of the selected image (jpg, png, gif, etc.) "ed-2.jpg" ed-2 jpg
-$fileParts = explode('.', $image_name);
+                $fileParts = explode('.', $image_name);
 
-// Check if explode successfully created an array
-if (is_array($fileParts)) {
-    $ext = end($fileParts);
-} else {
-    // Handle the case where explode failed
-    // You may want to set a default extension or handle the error in a way that fits your application
-    $ext = 'default_extension';
-}
+                // Check if explode successfully created an array
+                if (is_array($fileParts)) {
+                    $ext = end($fileParts);
+                } else {
+                    // Handle the case where explode failed
+                    // You may want to set a default extension or handle the error in a way that fits your application
+                    $ext = 'default_extension';
+                }
 
-// Create a new name for the image
-$new_image_name = "Item-Name-" . rand(0000, 9999) . "." . $ext;
+                // Create a new name for the image
+                $new_image_name = "Item-Name-" . rand(0000, 9999) . "." . $ext;
 
 
                 // B. Upload the Image

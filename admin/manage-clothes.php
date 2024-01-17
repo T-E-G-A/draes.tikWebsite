@@ -71,7 +71,22 @@
                       <td><?php echo $title ;?></td>
                       <td><?php echo $price ;?></td>
                       <td>
-                          <?php echo $image_name;?>
+                      <?php 
+                          //check whether image name is available or not
+                          if($image_name!="")
+                          {
+                            //display image
+                            ?>
+                            <img src="<?php echo SITEURL; ?>images/clothes/<?php echo $image_name; ?>" width="100px" height="80px">
+
+                            <?php
+                          }
+                          else{
+                            // display message
+                            echo "<div>No added image</div>";
+
+                          }
+                      ?>
                       </td>
                       <td><?php echo $featured ;?></td>
                       <td><?php echo $active ;?></td>

@@ -2,7 +2,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
 <style>
   body {
-    
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
@@ -57,7 +56,6 @@
   }
 </style>
 
-
 <div class="main-content">
     <div class="wrapper">
 
@@ -68,6 +66,11 @@
             if(isset($_GET['id']))
             {
                 $id=$_GET['id'];
+            }
+            if(isset($_SESSION['pwd-same-as-old']))
+            {
+              echo $_SESSION['pwd-same-as-old'];
+              unset($_SESSION['pwd-same-as-old']);
             }
         ?>
 
@@ -106,87 +109,91 @@
 
 <?php
 
-            //check whether the submit button is clicked
-            if(isset($_POST['submit']))
+    // check whether the submit button is clicked
+    if(isset($_POST['submit']))
+    {
+        // get the data from the form
+        $id = $_POST['id'];
+        $current_password = md5($_POST['current_password']);
+        $new_password = md5($_POST['new_password']);
+        $confirm_password = md5($_POST['confirm_password']);
+
+        // check if the new password is the same as the old password
+        if($current_password == $new_password)
+        {
+            // display error message and redirect
+            $_SESSION['pwd-same-as-old'] = "<div class='danger'> New password must be different from the old password.</div>";
+            // redirect back to update-password page
+            header('location:'.SITEURL.'admin/update-password.php?id='.$id);
+            exit();
+        }
+
+        // check if the user with current ID and Current Password exists
+        $sql = "SELECT * FROM tbl_admin WHERE id=$id AND password='$current_password'";
+
+        // execute the query
+        $res = mysqli_query($conn, $sql);
+
+        if($res == true)
+        {
+            // check if the data is available or not
+            $count = mysqli_num_rows($res);
+
+            if($count == 1)
             {
-                // echo "clicked";
+                // user exists and password can be changed
 
-                //1.get the data from form
-                $id=$_POST['id'];
-                $current_password=md5($_POST['current_password']);
-                $new_password=md5($_POST['new_password']);
-                $confirm_password=md5($_POST['confirm_password']);
-
-
-                //2.check whether the user with current ID and Current Passowrd exists
-                $sql ="SELECT * FROM tbl_admin WHERE id=$id AND password='$current_password'";
-
-                //execute the query
-                $res = mysqli_query($conn, $sql);
-
-                if($res==true)
+                // check whether the new password and confirm password match
+                if($new_password == $confirm_password)
                 {
-                    //check if the data is available or not
-                    $count=mysqli_num_rows($res);
+                    // update the password
+                    $sql2 = "UPDATE tbl_admin SET password='$new_password' WHERE id=$id";
 
-                    if($count==1)
+                    // execute the query
+                    $res2 = mysqli_query($conn, $sql2);
+
+                    // check whether the query executed
+                    if($res2 == true)
                     {
-                        //user exists and password can be changed
-                        // echo "user found";
-                        
-                        //check whether the new passowrd and confirm password match
-                        if($new_password==$confirm_password)
-                        {
-                            //update the password
-                            $sql2 = "UPDATE tbl_admin SET
-                                password='$new_password'
-                                WHERE id=$id
-                            ";
-
-                            //execute the query
-                            $res2 = mysqli_query($conn, $sql2);
-
-                            //check whether the query executed
-                            if($res2==true)
-                            {
-                                //display success message
-                                //redirect to manage admin page with success message
-                                $_SESSION['change-pwd'] = "<div class='success'> Password Change Successful.</div>";
-                                //redirect back to manage-admin page
-                                header('location:'.SITEURL.'admin/manage-admin.php');
-                            }
-                            else
-                            {
-                                //display error message
-                                //redirect to manage admin page with error message
-                                $_SESSION['change-pwd'] = "<div class='danger'> Password Change failed.</div>";
-                                //redirect back to manage-admin page
-                                header('location:'.SITEURL.'admin/manage-admin.php');
-                                
-                            }
-                        }
-                        else{
-                            //redirect to manage admin page with error message
-                            $_SESSION['pwd-not-match'] = "<div class='danger'> Passwords did not match.</div>";
-                            //redirect back to manage-admin page
-                            header('location:'.SITEURL.'admin/manage-admin.php');
-                        }
+                        // display success message
+                        // redirect to manage admin page with success message
+                        $_SESSION['change-pwd'] = "<div class='success'> Password Change Successful.</div>";
+                        // redirect back to manage-admin page
+                        header('location:'.SITEURL.'admin/manage-admin.php');
+                        exit();
                     }
                     else
                     {
-                        //if not admin current password set message and redirect
-                        $_SESSION['user-not-found'] = "<div class='danger'> Invalid current password.</div>";
-                        //redirect back to manage-admin page
+                        // display error message
+                        // redirect to manage admin page with error message
+                        $_SESSION['change-pwd'] = "<div class='danger'> Password Change failed.</div>";
+                        // redirect back to manage-admin page
                         header('location:'.SITEURL.'admin/manage-admin.php');
+                        exit();
                     }
                 }
-
-                //3.check whether the new password and confirm password match
-
-                //4.change password if all above is true
+                else
+                {
+                    // redirect to manage admin page with error message
+                    $_SESSION['pwd-not-match'] = "<div class='danger'> Passwords did not match.</div>";
+                    // redirect back to manage-admin page
+                    header('location:'.SITEURL.'admin/manage-admin.php');
+                    exit();
+                }
             }
+            else
+            {
+                // if not admin current password set message and redirect
+                $_SESSION['user-not-found'] = "<div class='danger'> Invalid current password.</div>";
+                // redirect back to manage-admin page
+                header('location:'.SITEURL.'admin/manage-admin.php');
+                exit();
+            }
+        }
+
+       
+    }
 
 ?>
-
 
 <?php include('partials/footer.php')?>
