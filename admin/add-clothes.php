@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
 <style>
   body {
     background-color: #f4f4f4;
@@ -84,12 +85,12 @@
 
         <tr>
           <td>Title: </td>
-          <td><input type="text" name="title" placeholder="Title of the Item"></td>
+          <td><input type="text" name="title" placeholder="TITLE OF THE ITEM" style="font-family:'Teko', sans-serif"></td>
         </tr>
 
         <tr>
           <td>Description: </td>
-          <td><textarea name="description" cols="30" rows="5" placeholder="Description of the Item."></textarea></td>
+          <td><textarea name="description" cols="30" rows="5" placeholder="DESCRIPTION OF THE ITEM." style="font-family:'Teko', sans-serif"></textarea></td>
         </tr>
 
         <tr>
@@ -240,14 +241,17 @@
                 // Check if explode successfully created an array
                 if (is_array($fileParts)) {
                     $ext = end($fileParts);
-                } else {
+                } 
+                else 
+                {
                     // Handle the case where explode failed
                     // You may want to set a default extension or handle the error in a way that fits your application
                     $ext = 'default_extension';
                 }
 
                 // Create a new name for the image
-                $new_image_name = "Item-Name-" . rand(0000, 9999) . "." . $ext;
+                $image_name ="item-name".rand(000,999).'.'.$ext;
+
 
 
                 // B. Upload the Image

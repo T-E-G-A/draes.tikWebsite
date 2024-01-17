@@ -139,7 +139,7 @@
         </tr>
 
         <tr>
-          <td>New Image: </td>
+          <td>Select New Image: </td>
           <td>
             <input type="file" name="image">
           </td>

@@ -2,7 +2,7 @@
 
 <div class="main-content">
     <div class="wrapper">
-        <h1>Manage Clothes</h1>
+        <h1>Manage Items</h1>
         <br>
 
         <?php 
@@ -17,11 +17,33 @@
               echo $_SESSION['upload'];
               unset($_SESSION['upload']);
             }
+            if(isset($_SESSION['delete']))
+            {
+              echo $_SESSION['delete'];
+              unset($_SESSION['delete']);
+            }
+            if(isset($_SESSION['update']))
+            {
+              echo $_SESSION['update'];
+              unset($_SESSION['update']);
+            }
+
+            if(isset($_SESSION['upload']))
+            {
+              echo $_SESSION['upload'];
+              unset($_SESSION['upload']);
+            }
+          
+            if(isset($_SESSION['failed-remove']))
+            {
+              echo $_SESSION['failed-remove'];
+              unset($_SESSION['failed-remove']);
+            }
        ?> 
 
        <br><br>
           <!-- Button to add admin-->
-          <a href="<?php echo SITEURL;?>admin/add-clothes.php" class="btn-primary">Add Clothes</a>
+          <a href="<?php echo SITEURL;?>admin/add-clothes.php" class="btn-primary">Add Item</a>
        <br><br><br>
 
           
@@ -93,8 +115,8 @@
                       
 
                       <td>
-                      <a href="#" class="btn-secondary">Update Clothes</a>
-                      <a href="#" class="btn-tertiary">Delete Clothes</a>
+                      <a href="<?php echo SITEURL; ?>admin/update-clothes.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-secondary">Update Item</a>
+                      <a href="<?php echo SITEURL; ?>admin/delete-clothes.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-tertiary">Delete Item</a>
                       </td>
                     </tr>
 
@@ -104,7 +126,7 @@
                 else
                 {
                   // item not Added in Database
-                  echo "<tr> <td colspan='7' class='error'> item not Added Yet. </td> </tr>";
+                  echo "<tr> <td colspan='7' class='error'> Item not Added Yet. </td> </tr>";
                 }
 
             ?>
