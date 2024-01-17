@@ -1,6 +1,68 @@
 <?php include('partials/menu.php'); ?>
 <link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
 
+<style>
+  body {
+    
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  .main-content {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  .tbl-30 {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+
+  input[type="text"],
+  input[type="file"]
+  {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  
+  input[type="submit"] {
+    background-color: lightseagreen;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: teal;
+  }
+</style>
+
+
 <div class="main-content">
   <div class="wrapper">
 
@@ -91,15 +153,19 @@
 
             if($upload==false) 
             {
+              //failed to upload image
+              //redirect to add clothes page with error message
+              //stop the process
               $_SESSION['upload']="<div class='danger'>Failed to upload image</div>";
               header("location:".SITEURL.'admin/add-category.php');
               die();
             }
           }
         }
-        else {
-          $image_name="";
-        }
+             else 
+             {
+                 $image_name="";//setting default value as blank
+             }
 
         // Insert category details into the database
         $sql ="INSERT INTO tbl_category SET
@@ -112,11 +178,15 @@
         $res=mysqli_query($conn,$sql);
 
         // Check if the insertion was successful and redirect accordingly
-        if($res==true) {
+        if($res==true) 
+        {
+          //data inserted sucessfullly
           $_SESSION['add']="<div class='success'>Category Added Successfully</div>";
           header("location:".SITEURL.'admin/manage-category.php');
         }
-        else {
+        else 
+        {
+          //failed to insert data
           $_SESSION['add']="<div class='danger'>Failed to add category</div>";
           header("location:".SITEURL.'admin/add-category.php');
         }

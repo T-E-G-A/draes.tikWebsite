@@ -46,7 +46,7 @@
     }
     ?>
 
-    <br><br><br>
+    <br><br>
     <a href="add-admin.php" class="btn-primary">Add Admin</a>
     <br><br><br>
 

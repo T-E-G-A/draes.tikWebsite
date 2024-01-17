@@ -1,5 +1,65 @@
 <?php include('partials/menu.php');?>
 <link href="https://fonts.googleapis.com/css2?family=Teko&display=swap" rel="stylesheet">
+<style>
+  body {
+    
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  .main-content {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+
+  .tbl-30 {
+    width: 80%;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+
+  input[type="text"],
+  input[type="file"]
+  {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  
+  input[type="submit"] {
+    background-color: lightseagreen;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: teal;
+  }
+</style>
 
 <div class="main-content">
   <div class="wrapper">

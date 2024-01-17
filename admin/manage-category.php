@@ -3,7 +3,7 @@
 <div class="main-content">
     <div class="wrapper">
         <h1>Manage Category</h1>
-        <br><br>
+        <br>
         <?php
 
           if(isset($_SESSION['add']))//checking if the session is set or not
