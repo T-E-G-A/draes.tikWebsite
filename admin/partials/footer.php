@@ -20,7 +20,7 @@
     
     <div class="footer">
         <div class="wrapper">
-            <p class="text-center" style="font-family:'Teko', sans-serif;">2024 ALL RIGHTS RESERVED, dræs.tɪk . DEVELOPED BY - <a href="#">EDWARD OVIASOGIE</a></p>
+            <p class="text-center" style="font-family:'Teko', sans-serif;">&copy; 2024 ALL RIGHTS RESERVED, dræs.tɪk . DEVELOPED BY - <a href="#">EDWARD OVIASOGIE</a></p>
         </div>
     </div>
 

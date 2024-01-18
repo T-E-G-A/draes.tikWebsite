@@ -122,16 +122,23 @@
             $featured = $_POST['featured'];
             $active = $_POST['active'];
 
-            // Handle image upload
+           // Handle image upload
             $image_name = $_FILES['image_name']['name'];
             if($image_name != "") 
             {
+                // Get the file extension
+                $ext = pathinfo($image_name, PATHINFO_EXTENSION);
+
+                // Create a new name for the image
+                $image_name = "item-name" . rand(000, 999) . '.' . $ext;
+
                 // Upload the new image
                 $source_path = $_FILES['image_name']['tmp_name'];
-                $destination_path = "../images/clothes/".$image_name;
+                $destination_path = "../images/clothes/" . $image_name;
                 $upload = move_uploaded_file($source_path, $destination_path);
 
-                if(!$upload) {
+                if(!$upload) 
+                {
                     // Display error if image upload fails
                     $_SESSION['upload'] = "<div class='danger'>Failed to upload image.</div>";
                     header('location:'.SITEURL.'admin/manage-clothes.php');
@@ -139,14 +146,17 @@
                 }
 
                 // Remove the old image
-                if($current_image != "") {
+                if($current_image != "") 
+                {
                     $remove_path = "../images/clothes/".$current_image;
                     
                     // Check if the file exists before attempting to remove it
-                    if(file_exists($remove_path)) {
+                    if(file_exists($remove_path))
+                     {
                         $remove = unlink($remove_path);
                         
-                        if(!$remove) {
+                        if(!$remove) 
+                        {
                             // Display error if removal of old image fails
                             $_SESSION['failed-remove'] = "<div class='danger'>Failed to remove old image.</div>";
                             header('location:'.SITEURL.'admin/manage-clothes.php');
@@ -165,6 +175,7 @@
                 // If no new image is selected, use the current image
                 $image_name = $current_image;
             }
+
 
             // Update the database
             $sql3 = "UPDATE tbl_clothes SET
