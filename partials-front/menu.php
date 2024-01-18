@@ -1,4 +1,4 @@
-<?php include('config/constants.php');?>
+<?php include('config/constants.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        /* Add this style block for additional animations */
         @keyframes fadeIn {
             0% {
                 opacity: 0;
@@ -23,77 +22,115 @@
             }
         }
 
-        .navbar {
+        #navbar-container {
             animation: fadeIn 1s ease-in-out;
             position: relative;
             overflow: hidden;
         }
 
-        .navbar:before {
+        #navbar:before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8)), url('images/logo-background.jpg'); /* Replace with your background image */
+            background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8)), url('images/logo-background.jpg');
             background-size: cover;
             background-position: center;
             z-index: -1;
         }
 
-        .logo img {
-            opacity: 0.9; /* Adjust the opacity level */
-            z-index: 1;
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif; /* Change to your preferred font */
         }
 
-        .menu ul {
+        #navbar-container .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        #navbar-logo a {
+            text-decoration: none;
+        }
+
+        #navbar-logo img {
+            max-width: 80%;
+            height: auto;
+            opacity: 0.9;
+            display: block; /* Ensures proper sizing */
+            margin: 0; /* Reset margin */
+            margin-right: auto; /* Move the logo to the left */
+            margin-left: -10px; /* Add some left margin if needed */
+           
+        }
+
+        #navbar-menu ul {
             animation: fadeIn 1s ease-in-out;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-end;
         }
 
-        .menu li {
+        #navbar-menu li {
             animation: fadeIn 1s ease-in-out;
             animation-delay: 0.2s;
-            
+            margin: 0 15px;
         }
-        
 
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            #navbar-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px; /* Adjust as needed */
+                left: 0;
+                width: 100%;
+                background-color: #fff; /* Adjust as needed */
+            }
 
-        /* Add more animations as needed */
+            #navbar-menu.active {
+                display: flex;
+            }
+
+            #navbar-menu li {
+                margin: 10px 0;
+            }
+
+            #navbar-container {
+                height: 60px; /* Adjust as needed */
+            }
+        }
     </style>
 </head>
 
 <body>
-    <!-- Navbar Section Starts Here -->
-    <section class="navbar">
+    <section id="navbar-container">
         <div class="container">
-            <div class="logo">
+            <div id="navbar-logo">
+            
                 <a href="#" title="Logo">
-                    <img src="images/logo.png" class="img-responsive">
+                <img src="images/logo.png" class="img-responsive">
                 </a>
             </div>
 
-            <div class="menu text-right">
+            <div id="navbar-menu" class="text-right">
                 <ul>
-                    <li>
-                        <a href="<?php echo SITEURL; ?>">Home</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo SITEURL; ?>categories.php">Categories</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo SITEURL; ?>clothes.php">Clothes</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>
+                    <li><a href="<?php echo SITEURL; ?>">Home</a></li>
+                    <li><a href="<?php echo SITEURL; ?>categories.php">Categories</a></li>
+                    <li><a href="<?php echo SITEURL; ?>clothes.php">Pieces</a></li>
+                    <li><a href="<?php echo SITEURL; ?>contact.php">Contact</a></li>
                 </ul>
             </div>
-
-            <div class="clearfix"></div>
         </div>
     </section>
-    <!-- Navbar Section Ends Here -->
 </body>
 
 </html>

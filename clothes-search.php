@@ -4,7 +4,7 @@
     <section class="clothes-search text-center">
         <div class="container">
             
-            <h2>Clothes on Your Search <a href="#" class="text-white">"EG"</a></h2>
+            <h2>Items on Your Search <a href="#" class="text-white">"EG"</a></h2>
 
         </div>
     </section>

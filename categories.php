@@ -1,86 +1,170 @@
-<?php include ('partials-front/menu.php');?> 
+<?php include ('partials-front/menu.php'); ?>
 
+<style>
+    /* Add this style block for additional animations */
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
 
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
-    <!-- clothes sEARCH Section Starts Here -->
-    <section class="clothes-search text-center">
-        <div class="container">
-            
-            <form action="clothes-search.html" method="POST">
-                <input type="search" name="search" placeholder="Search for Clothes..." required>
-                <input type="submit" name="submit" value="Search" class="btn btn-tertiary">
-            </form>
+    /* Apply fadeIn animation to the specified elements */
+    .clothes-search,
+    .categories {
+        animation: fadeIn 1s ease-in-out;
+    }
 
-        </div>
-    </section>
-    <!-- clothes sEARCH Section Ends Here -->
+    /* Optional: You can add animation delays to create a stagger effect */
+    .categories .box-3,
+    .clothes-menu .clothes-box {
+        animation-delay: 0.2s;
+    }
 
-    <!-- CAtegories Section Starts Here -->
-    <section class="categories">
-        <div class="container">
-            <h2 class="text-center">Explore All Our Options</h2>
+    /* Media Queries for Responsive Design */
+    @media only screen and (max-width: 768px) {
+        .clothes-box {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    }
+</style>
 
-            <?php
-                //create sql query to display categories from db
-                $sql = "SELECT * FROM tbl_category WHERE active='Yes' ";
-                //execute the query
-                $res = mysqli_query($conn,$sql);
-                //count rows to check if category is available
-                $count = mysqli_num_rows($res);
+<style>
+   
+   @keyframes fadeIn {
+       0% {
+           opacity: 0;
+           transform: translateY(-20px);
+       }
 
-                if($count>0)
-                {
-                    //categories available
-                    while($row=mysqli_fetch_assoc($res))
-                    {
-                        //get the values
-                        $id = $row['id'];
-                        $title = $row['title'];
-                        $image_name = $row['image_name'];
-                        ?>
+       100% {
+           opacity: 1;
+           transform: translateY(0);
+       }
+   }
 
-                        <a href="category-clothes.html">
-                            <div class="box-3 float-container" >
-                                <?php
-                                    //check if the image is available 
-                                    if($image_name=="")
-                                    {
-                                        //display message
-                                        echo "<div class='danger'>image not available</div>";
-                                    }
-                                    else
-                                    {
-                                        //image available
-                                        ?>
-                                        <img src="<?php echo SITEURL;?>images/category/<?php echo $image_name;?>" class="img-responsive img-curve" width="100px" height="350px" >
-                                        <?php
-                                    }
-                                ?>
+   #search-section,
+   #categories-section{
+       animation: fadeIn 1s ease-in-out;
+       position: relative;
+       overflow: hidden;
+   }
 
-                                <h3 class="float-text text-white"><?php echo $title;?></h3>
-                            </div>
-                        </a>
+   #search-section form {
+       animation: fadeIn 1s ease-in-out;
+       animation-delay: 0.2s; /* Adjust this delay as needed */
+   }
 
-                        <?php
-                    }
+   /* Media Queries for Responsive Design */
+   @media only screen and (max-width: 768px) {
+       .clothes-search form {
+           flex-direction: column;
+           align-items: center;
+       }
+
+       .clothes-search input[type="search"],
+       .clothes-search input[type="submit"] {
+           width: 100%;
+           margin-bottom: 10px;
+       }
+   }
+</style>
+
+<style>
+    #categories-section .box-3 {
+        margin-left: auto;
+        margin-right: auto;
+        
+        
+        margin: 0 20px 20px; /* Adjust the margins as needed for spacing */
+        max-width: 1200px; /* Adjust the max-width as needed */
+    }
+
+    @media only screen and (max-width: 768px) {
+        #categories-section .box-3 {
+            width: calc(100% - 40px); /* Adjust the width and padding as needed */
+            padding: 0 20px; /* Adjust the padding as needed */
+            margin: 0 0 20px 0; /* Adjust the margins as needed for spacing */
+        }
+    }
+</style>
+
+<!-- clothes SEARCH Section Starts Here -->
+<section class="clothes-search text-center" id="search-section">
+    <div class="container">
+        <form action="clothes-search.html" method="POST">
+            <input type="search" name="search" placeholder="Search for items..." style="font-family:'Teko', sans-serif" required>
+            <input type="submit" name="submit" value="Search" style="font-family:'Teko', sans-serif" class="btn btn-tertiary">
+        </form>
+    </div>
+</section>
+<!-- clothes SEARCH Section Ends Here -->
+
+<!-- Categories Section Starts Here -->
+<section class="categories">
+    <div class="container" id="categories-section">
+        <h2 class="text-center">Explore All Our Options</h2>
+
+        <?php
+            //create sql query to display categories from db
+            $sql = "SELECT * FROM tbl_category WHERE active='Yes' ";
+            //execute the query
+            $res = mysqli_query($conn, $sql);
+            //count rows to check if category is available
+            $count = mysqli_num_rows($res);
+
+            if ($count > 0) {
+                //categories available
+                $animationDelay = 0.2; // Initial delay for the fadeIn animation
+
+                while ($row = mysqli_fetch_assoc($res)) {
+                    //get the values
+                    $id = $row['id'];
+                    $title = $row['title'];
+                    $image_name = $row['image_name'];
+                    ?>
+
+                    <a href="category-clothes.html">
+                        <div class="box-3 float-container" style="animation-delay: <?php echo $animationDelay; ?>s;" >
+                            <?php
+                                //check if the image is available 
+                                if ($image_name == "") {
+                                    //display message
+                                    echo "<div class='danger'>image not available</div>";
+                                } else {
+                                    //image available
+                                    ?>
+                                    <img src="<?php echo SITEURL; ?>images/category/<?php echo $image_name; ?>" class="img-responsive img-curve" width="100px" height="350px" >
+                                    <?php
+                                }
+                            ?>
+
+                            <h3 class="float-text text-white"><?php echo $title; ?></h3>
+                        </div>
+                    </a>
+
+                    <?php
+                    $animationDelay += 0.2; // Increment delay for each subsequent element
                 }
-                else
-                {
-                    //categories not available
-                    echo "<div class= 'danger'>Category not added</div>";
-                }
-            ?>
+            } else {
+                //categories not available
+                echo "<div class= 'danger'>Category not added</div>";
+            }
+        ?>
 
-           
+        <div class="clearfix"></div>
+    </div>
+</section>
+<!-- Categories Section Ends Here -->
 
-            <div class="clearfix"></div>
-        </div>
-    </section>
-    <!-- Categories Section Ends Here -->
-
-
-<?php include ('partials-front/footer.php');?> 
-
+<?php include ('partials-front/footer.php'); ?>
 
 </body>
 </html>

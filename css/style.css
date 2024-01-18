@@ -87,7 +87,7 @@ a:hover{
     background-color: lightcyan;
     color: #2f3542;
     cursor: pointer;
-    font-family: 'Lobster', sans-serif;
+    font-family: 'bebas neue', sans-serif;
     transition: background-color 0.3s ease; 
 
 }
@@ -164,7 +164,7 @@ fieldset{
     font-size: 1rem;
     border: none;
     border-radius: 5px;
-    font-family: 'Lobster', sans-serif;
+   
 }
 
 
@@ -219,7 +219,7 @@ fieldset{
 .clothes-price{
     font-size: 1.4rem;
     margin: 2% 0;
-    font-family: 'bebas', sans-serif;
+    font-family: 'bebas neue', sans-serif;
 }
 .clothes-detail{
     font-size: 1rem;
