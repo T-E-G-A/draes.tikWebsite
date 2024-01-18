@@ -83,7 +83,7 @@
     <!-- footer Section starts Here -->
     <div class="footer">
         <div class="wrapper">
-            <p>&copy; 2024 ALL RIGHTS RESERVED, dræs.tɪk. DEVELOPED BY - <a href="https://www.linkedin.com/in/edward-oviasogie-870941240">EDWARD OVIASOGIE</a></p>
+            <p style="font-family:'Teko',sans-serif">&copy; 2024 ALL RIGHTS RESERVED, dræs.tɪk. DEVELOPED BY - <a href="https://www.linkedin.com/in/edward-oviasogie-870941240">EDWARD OVIASOGIE</a></p>
         </div>
     </div>
     <!-- footer Section ends Here -->

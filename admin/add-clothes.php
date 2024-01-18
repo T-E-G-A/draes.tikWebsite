@@ -68,12 +68,14 @@
 </style>
 
 
-<?php include('partials/menu.php');?>
+<?php include('partials/menu.php');
+ob_start(); // Start output buffering
+?>
 
 <div class="main-content">
   <div class="wrapper">
 
-    <h1>Add Clothes</h1>
+    <h1>Add Item</h1>
 
     <br><br>
 
@@ -85,7 +87,7 @@
 
         <tr>
           <td>Title: </td>
-          <td><input type="text" name="title" placeholder="TITLE OF THE ITEM" style="font-family:'Teko', sans-serif"></td>
+          <td><input type="text" name="title" placeholder="TITLE OF THE ITEM" style="font-family:'Teko', sans-serif" required></td>
         </tr>
 
         <tr>
@@ -95,7 +97,7 @@
 
         <tr>
           <td>Price: </td>
-          <td><input type="number" name="price"></td>
+          <td><input type="number" name="price" required></td>
         </tr>
 
         <tr>
@@ -326,6 +328,9 @@
   </div>
 </div>
 
-
+<?php
+// flush the output buffer and send the headers
+ob_end_flush();
+?>
 
 <?php include('partials/footer.php');?>

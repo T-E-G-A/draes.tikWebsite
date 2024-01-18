@@ -79,110 +79,72 @@
     <!-- clothes MEnu Section Starts Here -->
     <section class="clothes-menu">
         <div class="container">
-            <h2 class="text-center">Available Options</h2>
+            <h2 class="text-center">Available Pieces</h2>
 
-            <div class="clothes-box">
-                <div class="clothes-img">
-                    <img src="images/mens.jpg"  class="img-responsive img-curve">
-                </div>
+            <?php
+                //create sql query to display categories from db
+                $sql2 = "SELECT * FROM tbl_clothes WHERE active='Yes' AND featured='Yes' LIMIT 6 ";
+                //execute the query
+                $res2 = mysqli_query($conn,$sql2);
+                //count rows to check if category is available
+                $count2 = mysqli_num_rows($res2);
 
-                <div class="clothes-desc">
-                    <h4>Escape the Grid White Tee</h4>
-                    <p class="clothes-price">₦9,000</p>
-                    <p class="clothes-detail">
-                       
-                    </p>
-                    <br>
+                if($count2>0)
+                {
+                    //categories available
+                    while($row=mysqli_fetch_assoc($res2))
+                    {
+                        //get the values
+                        $id = $row['id'];
+                        $title = $row['title'];
+                        $price = $row['price'];
+                        $description = $row['description'];
+                        $image_name = $row['image_name'];
+                    ?>
 
-                    <a href="order.html" class="btn btn-primary">Order Now</a>
-                </div>
-            </div>
+                        <div class="clothes-box" style="width: 40%;" >
+                            <div class="clothes-img" >
+                            <?php
+                                    //check if the image is available 
+                                    if($image_name=="")
+                                    {
+                                        //display message
+                                        echo "<div class='danger'>image not available</div>";
+                                    }
+                                    else
+                                    {
+                                        //image available
+                                        ?>
+                                        <img src="<?php echo SITEURL;?>images/clothes/<?php echo $image_name;?>" class="img-responsive img-curve"  height="350px" style="width: 100%;" >
+                                        <?php
+                                    }
+                                ?>
+                                
+                            </div>
 
-            <div class="clothes-box">
-                <div class="clothes-img">
-                    <img src="images/BTM.jpg"  class="img-responsive img-curve">
-                </div>
+                            <div class="clothes-desc">
+                                <h4><?php echo $title;?></h4>
+                                <p class="clothes-price" style="font-family:'Teko', sans-serif">₦<?php echo $price;?></p>
+                                
+                                <br>
 
-                <div class="clothes-desc">
-                    <h4>Behind the Mugshot Black Tee</h4>
-                    <p class="clothes-price">₦9,000</p>
-                    <p class="clothes-detail">
+                                <a href="order.html" class="btn btn-primary">Order Now</a>
+                            </div>
+                         </div>
+                    <?php
+
                         
-                    </p>
-                    <br>
+                    }
+                }
+                else
+                {
+                    //categories not available
+                    echo "<div class= 'danger'>Category not added</div>";
+                }
+            ?>
 
-                    <a href="#" class="btn btn-primary">Order Now</a>
-                </div>
-            </div>
 
-            <div class="clothes-box">
-                <div class="clothes-img">
-                    <img src="images/GP.jpg"  class="img-responsive img-curve">
-                </div>
-
-                <div class="clothes-desc">
-                    <h4>Glitched Persona Black Tee</h4>
-                    <p class="clothes-price">₦9,000</p>
-                    <p class="clothes-detail">
-                        
-                    </p>
-                    <br>
-
-                    <a href="#" class="btn btn-primary">Order Now</a>
-                </div>
-            </div>
-          
-
-            <div class="clothes-box">
-                <div class="clothes-img2">
-                    <img src="images/WB.jpg"  class="img-responsive img-curve">
-                </div>
-
-                <div class="clothes-desc">
-                    <h4>Wired Bloom White Tee</h4>
-                    <p class="clothes-price">₦9,000</p>
-                    <p class="clothes-detail">
-                        
-                    </p>
-                    <br>
-
-                    <a href="#" class="btn btn-primary">Order Now</a>
-                </div>
-            </div>
-
-            <div class="clothes-box">
-                <div class="clothes-img2">
-                    <img src="images/LIM.jpg"  class="img-responsive img-curve">
-                </div>
-
-                <div class="clothes-desc">
-                    <h4>Life in Motion Black Tee</h4>
-                    <p class="clothes-price">₦9,000</p>
-                    <p class="clothes-detail">
-                        
-                    </p>
-                    <br>
-
-                    <a href="#" class="btn btn-primary">Order Now</a>
-                </div>
-            </div>
-
-            <div class="clothes-box">
-                <div class="clothes-img2">
-                    <img src="images/RI.jpg"  class="img-responsive img-curve">
-                </div>
-
-                <div class="clothes-desc">
-                    <h4>Reinvention Grey Tee</h4>
-                    <p class="clothes-price">₦9,000</p>
-                    <p class="clothes-detail">
-                        
-                    </p>
-                    <br>
-
-                    <a href="#" class="btn btn-primary">Order Now</a>
-                </div>
-            </div>
+            
 
             <div class="clearfix"></div>
 
@@ -191,7 +153,7 @@
         </div>
 
         <p class="text-center">
-            <a href="#">See All Clothes</a>
+            <a href="#">See All Pieces</a>
         </p>
     </section>
     <!-- clothes Menu Section Ends Here -->
