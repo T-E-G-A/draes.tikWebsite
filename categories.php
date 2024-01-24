@@ -62,54 +62,25 @@
        animation-delay: 0.2s; /* Adjust this delay as needed */
    }
 
-   /* Media Queries for Responsive Design */
-   @media only screen and (max-width: 768px) {
-       .clothes-search form {
-           flex-direction: column;
-           align-items: center;
-       }
-
-       .clothes-search input[type="search"],
-       .clothes-search input[type="submit"] {
-           width: 100%;
-           margin-bottom: 10px;
-       }
-   }
+   
 </style>
 
-<style>
-    #categories-section .box-3 {
-        margin-left: auto;
-        margin-right: auto;
-        
-        
-        margin: 0 20px 20px; /* Adjust the margins as needed for spacing */
-        max-width: 1200px; /* Adjust the max-width as needed */
-    }
 
-    @media only screen and (max-width: 768px) {
-        #categories-section .box-3 {
-            width: calc(100% - 40px); /* Adjust the width and padding as needed */
-            padding: 0 20px; /* Adjust the padding as needed */
-            margin: 0 0 20px 0; /* Adjust the margins as needed for spacing */
-        }
-    }
-</style>
 
 <!-- clothes SEARCH Section Starts Here -->
 <section class="clothes-search text-center" id="search-section">
-    <div class="container">
-        <form action="clothes-search.html" method="POST">
-            <input type="search" name="search" placeholder="Search for items..." style="font-family:'Teko', sans-serif" required>
-            <input type="submit" name="submit" value="Search" style="font-family:'Teko', sans-serif" class="btn btn-tertiary">
-        </form>
-    </div>
+   <div class="container">
+       <form action="<?php echo SITEURL; ?>clothes-search.php" method="POST">
+           <input type="search" name="search" placeholder="Search for items..." style="font-family:'Teko', sans-serif" required>
+           <input type="submit" name="submit" value="Search" style="font-family:'Teko', sans-serif" class="btn btn-tertiary">
+       </form>
+   </div>
 </section>
 <!-- clothes SEARCH Section Ends Here -->
 
 <!-- Categories Section Starts Here -->
 <section class="categories">
-    <div class="container" id="categories-section">
+    <div class="container" >
         <h2 class="text-center">Explore All Our Options</h2>
 
         <?php
@@ -131,8 +102,8 @@
                     $image_name = $row['image_name'];
                     ?>
 
-                    <a href="category-clothes.html">
-                        <div class="box-3 float-container" style="animation-delay: <?php echo $animationDelay; ?>s;" >
+                    <a href="<?php echo SITEURL; ?>category-clothes.php?category_id=<?php echo $id; ?>">
+                        <div class="box-3 float-container" style="animation-delay: <?php echo $animationDelay; ?>;" >
                             <?php
                                 //check if the image is available 
                                 if ($image_name == "") {
@@ -141,7 +112,7 @@
                                 } else {
                                     //image available
                                     ?>
-                                    <img src="<?php echo SITEURL; ?>images/category/<?php echo $image_name; ?>" class="img-responsive img-curve" width="100px" height="350px" >
+                                    <img src="<?php echo SITEURL; ?>images/category/<?php echo $image_name; ?>" class="img-responsive img-curve"  >
                                     <?php
                                 }
                             ?>

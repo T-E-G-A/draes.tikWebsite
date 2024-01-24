@@ -71,8 +71,8 @@
             <!-- Follow Us on Social Media -->
             <div class="text-center">
                 <p>Follow/message us on:
-                <a href="https://www.facebook.com/yourpage" target="_blank">Facebook</a>
-                <a href="https://www.instagram.com/draes.tk/" target="_blank">Instagram</a>
+                <a href="https://www.facebook.com/yourpage" target="_blank">Facebook</a>/
+                <a href="https://www.instagram.com/draes.tk/" target="_blank">Instagram</a>/
                 <a href="https://twitter.com/yourpage" target="_blank">Twitter</a>
                 </p>
 
