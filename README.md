@@ -1,8 +1,11 @@
 # dræstɪkWeb
 This is an e-commerce Website , designed using html,css and php. 
 
+## Pending Functions
 
-
+- [] User Authentication. (Signup/Login)
+- [] Paystack implementation.
+- [] Cart.
 
 
 ## Technologies Used
