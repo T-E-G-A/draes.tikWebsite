@@ -1,6 +1,13 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+ 
+//required files
+require 'phpmailer/src/Exception.php';
+require 'phpmailer/src/PHPMailer.php';
+require 'phpmailer/src/SMTP.php';
 
 // Include the database connection file
 include('partials-front/menu.php');
@@ -52,19 +59,80 @@ if (isset($_POST['submit'])) {
     $stmt2->bind_param("sdddsssssss", $clothing, $price, $qty, $total, $order_date, $status, $customer_name, $customer_contact, $customer_email, $customer_address, $size);
 
     if ($stmt2->execute()) {
-        $_SESSION['order'] = "<div class='success text-center'>Order placed successfully.</div>";
-        header('location: ' . SITEURL);
-        exit();
-    } else {
-        $_SESSION['order'] = "<div class='danger text-center'>Failed to place order.</div>";
-        header('location: ' . SITEURL);
-        exit();
+        // Order placed successfully
+
+        // Send confirmation email using PHPMailer
+        $mail = new PHPMailer(true);
+
+        try {
+            // Server settings
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';  // Specify the SMTP server
+            $mail->SMTPAuth   = true;                          // Enable SMTP authentication
+            $mail->Username   = 'dragseddie@gmail.com';      // SMTP username
+            $mail->Password   = 'tvtgpfgmmttrbkwl';         // SMTP password
+            $mail->SMTPSecure = 'ssl';                         // Enable TLS encryption; `ssl` also accepted
+            $mail->Port       = 465;                           // TCP port to connect to
+
+            // Recipients
+            $mail->setFrom('tegaoviasogie@gmail.com', 'dræs.tɪk');
+            $mail->addAddress($customer_email);  // Add a recipient
+
+            // Content
+            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->Subject = "Order Confirmation - dræs.tɪk";
+            $mail->Body    ="
+            <div style='background-color: #f8f8f8; padding: 20px; font-family: 'Arial', sans-serif;'>
+                <div style='max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 8px;'>
+                    <h2 style='text-align: center; color: #333;'>Order Confirmation</h2>
+
+                    <div style='border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px;'>
+                        <h3 style='color: #28a745; font-weight: bold; text-align: center;'>Order Placed Successfully</h3>
+
+                        <p style='font-weight: bold;'>Order Details:</p>
+                        <p>Clothing: $clothing</p>
+                        <p>Quantity: $qty</p>
+                        <p>Size: $size</p>
+                        <p>Total Price: ₦$total</p>
+
+                        <br><br>
+
+                        <p style='font-weight: bold;'>Customer Information:</p>
+                        <p>Name: $customer_name</p>
+                        <p>Contact: $customer_contact</p>
+                        <p>Email: $customer_email</p>
+                        <p>Address: $customer_address</p>
+                    </div>
+
+                    <p style='text-align: center; margin-top: 20px;'>
+                        <a href='" . SITEURL . "' style='background-color: #f8f9fa; color: #333; border: 1px solid #ccc; padding: 10px 20px; font-size: 16px; text-decoration: none; border-radius: 4px; transition: background-color 0.3s ease; display: inline-block;'>
+                            Back to Home
+                        </a>
+                    </p>
+                </div>
+            </div>
+        ";
+            // Add more details as needed
+
+            $mail->send();
+            $_SESSION['order'] = "<div class='success text-center'>Order placed successfully. Confirmation email sent.</div>";
+            header('location: ' . SITEURL);
+            exit();
+        } catch (Exception $e) {
+            error_log("Error sending mail: " . $mail->ErrorInfo);
+            $_SESSION['order'] = "<div class='danger text-center'>Failed to place order.</div>";
+            header('location: ' . SITEURL);
+            exit();
+        }
     }
 
     $stmt2->close();
-    
 }
 ?>
+
+<!-- The rest of your HTML code remains unchanged -->
+
+
 
 <!DOCTYPE html>
 <html lang="en">
