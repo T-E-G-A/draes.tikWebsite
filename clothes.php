@@ -59,6 +59,7 @@
        animation: fadeIn 1s ease-in-out;
        animation-delay: 0.2s; /* Adjust this delay as needed */
    }
+  
 
    
 </style>
@@ -128,8 +129,7 @@
                         <h4><?php echo $title;?></h4>
                         <p class="clothes-price" style="font-family:'Teko', sans-serif">₦<?php echo $price;?></p>
                         <br>
-                        <a href="<?php echo SITEURL; ?>order.php?food_id=<?php echo $id;?>" class="btn btn-primary">Order Now</a>
-                    </div>
+                        <a href="<?php echo SITEURL; ?>order.php?item_id=<?php echo $id;?>" class="btn btn-primary">Order Now</a>                    </div>
                 </div>
                 <?php
             }

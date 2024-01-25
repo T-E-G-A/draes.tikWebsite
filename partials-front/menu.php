@@ -25,6 +25,7 @@
                     <li><a href="<?php echo SITEURL; ?>categories.php">Categories</a></li>
                     <li><a href="<?php echo SITEURL; ?>clothes.php">Pieces</a></li>
                     <li><a href="<?php echo SITEURL; ?>contact.php">Contact</a></li>
+                    <li><a href="<?php echo SITEURL; ?>track-order.php">Track order</a></li>
                 </ul>
             </div>
         </div>

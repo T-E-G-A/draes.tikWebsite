@@ -15,7 +15,8 @@
 
     /* Apply fadeIn animation to the specified elements */
     .clothes-search,
-    .categories {
+    .categories,
+    .clothes-menu .clothes-box {
         animation: fadeIn 1s ease-in-out;
     }
 
@@ -142,13 +143,13 @@
 <!-- Categories Section Ends Here -->
 
 <!-- clothes Menu Section Starts Here -->
-<section class="clothes-menu" id="clothes-menu-section">
+<section class="clothes-menu">
     <div class="container">
         <h2 class="text-center">Available Pieces</h2>
 
         <?php
         // create sql query to display categories from db
-        $sql2 = "SELECT * FROM tbl_clothes WHERE active='Yes' AND featured='Yes' LIMIT 7 ";
+        $sql2 = "SELECT * FROM tbl_clothes WHERE active='Yes' AND featured='Yes' LIMIT 6 ";
         // execute the query
         $res2 = mysqli_query($conn,$sql2);
         // count rows to check if category is available

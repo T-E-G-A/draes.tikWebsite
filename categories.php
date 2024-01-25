@@ -99,7 +99,7 @@
 <!-- clothes SEARCH Section Starts Here -->
 <section class="clothes-search text-center" id="search-section">
     <div class="container">
-        <form action="clothes-search.html" method="POST">
+        <form action="clothes-search.php" method="POST">
             <input type="search" name="search" placeholder="Search for items..." style="font-family:'Teko', sans-serif" required>
             <input type="submit" name="submit" value="Search" style="font-family:'Teko', sans-serif" class="btn btn-tertiary">
         </form>
@@ -131,7 +131,7 @@
                     $image_name = $row['image_name'];
                     ?>
 
-                    <a href="category-clothes.html">
+                    <a href="<?php echo SITEURL; ?>category-clothes.php?category_id=<?php echo $id; ?>">
                         <div class="box-3 float-container" style="animation-delay: <?php echo $animationDelay; ?>s;" >
                             <?php
                                 //check if the image is available 

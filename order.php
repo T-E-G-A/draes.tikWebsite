@@ -1,21 +1,17 @@
 <?php
 
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
- 
-//required files
+
 require 'phpmailer/src/Exception.php';
 require 'phpmailer/src/PHPMailer.php';
 require 'phpmailer/src/SMTP.php';
 
-// Include the database connection file
 include('partials-front/menu.php');
 
 if (isset($_GET['item_id'])) {
     $item_id = $_GET['item_id'];
 
-    // Use prepared statement to prevent SQL injection
     $sql = "SELECT * FROM tbl_clothes WHERE id=?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $item_id);
@@ -27,6 +23,7 @@ if (isset($_GET['item_id'])) {
 
     if ($count == 1) {
         $row = mysqli_fetch_assoc($res);
+        $id = $row['id'];
         $title = $row['title'];
         $price = $row['price'];
         $image_name = $row['image_name'];
@@ -40,79 +37,73 @@ if (isset($_GET['item_id'])) {
 }
 
 if (isset($_POST['submit'])) {
+    $id = $_POST['id'];
     $clothing = $title;
     $qty = $_POST['qty'];
     $size = $_POST['size'];
-
     $total = $price * $qty;
-    $order_date = date("Y-m-d H:i:s"); // Use uppercase H for 24-hour format
+    $order_date = date("Y-m-d H:i:s");
     $status = "ordered";
     $customer_name = $_POST['full-name'];
     $customer_contact = $_POST['contact'];
     $customer_email = $_POST['email'];
     $customer_address = $_POST['address'];
 
-    // Use prepared statement to prevent SQL injection
     $sql2 = "INSERT INTO tbl_order (clothing, price, qty, total, order_date, status, customer_name, customer_contact, customer_email, customer_address, size) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     $stmt2 = $conn->prepare($sql2);
     $stmt2->bind_param("sdddsssssss", $clothing, $price, $qty, $total, $order_date, $status, $customer_name, $customer_contact, $customer_email, $customer_address, $size);
 
     if ($stmt2->execute()) {
-        // Order placed successfully
+        // Fetch the last inserted ID
+        $lastInsertedId = $stmt2->insert_id;
 
-        // Send confirmation email using PHPMailer
         $mail = new PHPMailer(true);
 
         try {
-            // Server settings
             $mail->isSMTP();
-            $mail->Host       = 'smtp.gmail.com';  // Specify the SMTP server
-            $mail->SMTPAuth   = true;                          // Enable SMTP authentication
-            $mail->Username   = 'dragseddie@gmail.com';      // SMTP username
-            $mail->Password   = 'tvtgpfgmmttrbkwl';         // SMTP password
-            $mail->SMTPSecure = 'ssl';                         // Enable TLS encryption; `ssl` also accepted
-            $mail->Port       = 465;                           // TCP port to connect to
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'dragseddie@gmail.com';
+            $mail->Password   = 'tvtgpfgmmttrbkwl';
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port       = 465;
 
-            // Recipients
-            $mail->setFrom('tegaoviasogie@gmail.com', 'dræs.tɪk');
-            $mail->addAddress($customer_email);  // Add a recipient
+            $mail->setFrom('dragsddie@gmail.com', 'dræs.tɪk');
+            $mail->addAddress($customer_email);
 
-            // Content
-            $mail->isHTML(true);                                  // Set email format to HTML
+            $mail->isHTML(true);
             $mail->Subject = "Order Confirmation - dræs.tɪk";
-            $mail->Body    ="
-            <div style='background-color: #f8f8f8; padding: 20px; font-family: 'Arial', sans-serif;'>
-                <div style='max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 8px;'>
-                    <h2 style='text-align: center; color: #333;'>Order Confirmation</h2>
+            $mail->Body = "
+                <div style='background-color: #f8f8f8; padding: 20px; font-family: 'Arial', sans-serif;'>
+                    <div style='max-width: 600px; margin: 0 auto; background-color: #fff; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 8px;'>
+                        <h2 style='text-align: center; color: #333;'>Order Confirmation</h2>
 
-                    <div style='border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px;'>
-                        <h3 style='color: #28a745; font-weight: bold; text-align: center;'>Order Placed Successfully</h3>
+                        <div style='border-top: 1px solid #ddd; padding-top: 20px; margin-top: 20px;'>
+                            <h3 style='color: #28a745; font-weight: bold; text-align: center;'>Order Placed Successfully</h3>
 
-                        <p style='font-weight: bold;'>Order Details:</p>
-                        <p>Clothing: $clothing</p>
-                        <p>Quantity: $qty</p>
-                        <p>Size: $size</p>
-                        <p>Total Price: ₦$total</p>
+                            <p>Clothing: $clothing</p>
+                            <p>Quantity: $qty</p>
+                            <p>Size: $size</p>
+                            <p>Total Price: ₦$total</p>
 
-                        <br><br>
+                            <br>
 
-                        <p style='font-weight: bold;'>Customer Information:</p>
-                        <p>Name: $customer_name</p>
-                        <p>Contact: $customer_contact</p>
-                        <p>Email: $customer_email</p>
-                        <p>Address: $customer_address</p>
+                            <p>Name: $customer_name</p>
+                            <p>Contact: $customer_contact</p>
+                            <p>Email: $customer_email</p>
+                            <p>Address: $customer_address</p>
+                            <p>Order ID: $lastInsertedId</p>
+                        </div>
+
+                        <p style='text-align: center; margin-top: 20px;'>
+                            <a href='" . SITEURL . "' style='background-color: #f8f9fa; color: #333; border: 1px solid #ccc; padding: 10px 20px; font-size: 16px; text-decoration: none; border-radius: 4px; transition: background-color 0.3s ease; display: inline-block;'>
+                                Back to Home
+                            </a>
+                        </p>
                     </div>
-
-                    <p style='text-align: center; margin-top: 20px;'>
-                        <a href='" . SITEURL . "' style='background-color: #f8f9fa; color: #333; border: 1px solid #ccc; padding: 10px 20px; font-size: 16px; text-decoration: none; border-radius: 4px; transition: background-color 0.3s ease; display: inline-block;'>
-                            Back to Home
-                        </a>
-                    </p>
                 </div>
-            </div>
-        ";
-            // Add more details as needed
+            ";
 
             $mail->send();
             $_SESSION['order'] = "<div class='success text-center'>Order placed successfully. Confirmation email sent.</div>";
@@ -208,8 +199,10 @@ if (isset($_POST['submit'])) {
 
                 <div class="order-label">Address</div>
                 <textarea name="address" rows="10" placeholder="E.g. Street, City, Country" class="input-responsive" required></textarea>
-
+                
+                <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <input type="submit" name="submit" value="Confirm Order">
+                
             </fieldset>
         </form>
     </div>
