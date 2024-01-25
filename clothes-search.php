@@ -5,7 +5,7 @@
     <div class="container">
         <?php
             //get the search keyword
-            $search = $_POST['search'];
+            $search = mysqli_real_escape_string($conn,$_POST['search']);
         ?>
         <h2 style="color:lightcyan;">Items on Your Search <a href="#" class="search-link text-white">"<?php echo $search;?>"</a></h2>
     </div>
@@ -104,6 +104,7 @@
                
 
                 //sql query to get clothes based on search keyword
+                
                 $sql = "SELECT * FROM tbl_clothes WHERE title LIKE '%$search%' OR description like '%$search%'";
 
                 //execute the query

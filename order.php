@@ -37,17 +37,18 @@ if (isset($_GET['item_id'])) {
 }
 
 if (isset($_POST['submit'])) {
-    $id = $_POST['id'];
-    $clothing = $title;
-    $qty = $_POST['qty'];
-    $size = $_POST['size'];
+    $id = mysqli_real_escape_string($conn, $_POST['id']);
+    $clothing = mysqli_real_escape_string($conn, $title); 
+    $qty = mysqli_real_escape_string($conn, $_POST['qty']);
+    $size = mysqli_real_escape_string($conn, $_POST['size']);
+    $price = mysqli_real_escape_string($conn, $price);
     $total = $price * $qty;
     $order_date = date("Y-m-d H:i:s");
     $status = "Ordered";
-    $customer_name = $_POST['full-name'];
-    $customer_contact = $_POST['contact'];
-    $customer_email = $_POST['email'];
-    $customer_address = $_POST['address'];
+    $customer_name = mysqli_real_escape_string($conn, $_POST['full-name']);
+    $customer_contact = mysqli_real_escape_string($conn, $_POST['contact']);
+    $customer_email = mysqli_real_escape_string($conn, $_POST['email']);
+    $customer_address = mysqli_real_escape_string($conn, $_POST['address']);
 
     $sql2 = "INSERT INTO tbl_order (clothing, price, qty, total, order_date, status, customer_name, customer_contact, customer_email, customer_address, size) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
