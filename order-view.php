@@ -67,7 +67,28 @@
                             <td><?php echo $size; ?></td>
                             <td><?php echo $total; ?></td>
                             <td><?php echo $order_date; ?></td>
-                            <td><?php echo $status; ?></td>
+                            <td>
+                            <?php 
+                                //ordered, on delivery, delivered, cancelled
+                                if($status=="Ordered")
+                                    {
+                                        echo "<label style='color:blue;'>$status</label>";
+                                    }
+                                elseif($status=="On Delivery")
+                                    {
+                                        echo "<label style='color:orange;'>$status</label>";
+                                    }
+                                elseif($status=="Delivered")
+                                    {
+                                        echo "<label style='color:lightseagreen;'>$status</label>";
+                                    }
+                                elseif($status=="Cancelled")
+                                    {
+                                        echo "<label style='color:#ff4757;'>$status</label>";
+                                    }
+                            
+                            ?>
+                          </td>
                             <td><?php echo $customer_name; ?></td>
                             <td><?php echo $customer_contact; ?></td>
                             <td><?php echo $customer_email; ?></td>

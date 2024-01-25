@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
     $size = $_POST['size'];
     $total = $price * $qty;
     $order_date = date("Y-m-d H:i:s");
-    $status = "ordered";
+    $status = "Ordered";
     $customer_name = $_POST['full-name'];
     $customer_contact = $_POST['contact'];
     $customer_email = $_POST['email'];
