@@ -1,8 +1,6 @@
 <?php include('partials-front/menu.php'); ?>
 
-<style>
-    /* Your existing styles here */
-</style>
+
 
 <div class="main-content">
     <div class="wrapper">
@@ -241,10 +239,7 @@ table tr td{
 }
 
 /* CSS for Footer */
-.footer{
-    background-color: #2f3542;
-    color: lightcyan;
-}
+
 /*css for login*/
 
 
@@ -349,6 +344,27 @@ table tr td{
     transition: color 0.3s ease;
     color:#2691d9; 
   }
+  @media only screen and (max-width: 768px) {
+    th, td {
+        padding: 8px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    th, td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    th {
+        text-align: center;
+    }
+
+    .tbl-full {
+        margin-top: 10px;
+    }
+}
 
 </style>
 
