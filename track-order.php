@@ -58,17 +58,7 @@
     </form>
 </div>
 <style>
-@keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
 
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
 
 
 .center{
@@ -159,6 +149,20 @@
     transition: .5s;
   }
  
+  @media only screen and (max-width: 768px) {
+    .center {
+        width: 80%; /* Adjusted width for medium screens */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .center {
+        width: 100%; /* Full width for smaller screens */
+    }
+    .center form {
+        padding: 0 10px; /* Adjusted padding for smaller screens */
+    }
+}
 
 </style>
 
