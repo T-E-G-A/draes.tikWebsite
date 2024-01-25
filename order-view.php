@@ -11,7 +11,7 @@
 
         <table class="tbl-full">
             <tr>
-                <th>S.N</th>
+                <th>ID</th>
                 <th>Item</th>
                 <th>Price</th>
                 <th>Qty.</th>
@@ -331,4 +331,4 @@ table tr td{
 
 </style>
 
-<?php include ('partials-front/footer.php');?>
+
