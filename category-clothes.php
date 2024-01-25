@@ -1,4 +1,75 @@
 <?php include ('partials-front/menu.php');?> 
+<style>
+    .cat-link {
+        text-decoration: none;
+        font-weight: bold;
+        color: #66c2ff;
+        
+    }
+
+    .cat-link:hover {
+        text-decoration: none; 
+        color: #2691d9;
+
+    }
+</style>
+<style>
+    /* Add this style block for additional animations */
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Apply fadeIn animation to the specified elements */
+    .clothes-search,
+    .clothes-menu {
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    /* Optional: You can add animation delays to create a stagger effect */
+    
+    .clothes-menu .clothes-box {
+        animation-delay: 0.2s;
+    }
+
+    /* Media Queries for Responsive Design */
+    @media only screen and (max-width: 768px) {
+        .clothes-box {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    }
+</style>
+
+<style>
+   
+   @keyframes fadeIn {
+       0% {
+           opacity: 0;
+           transform: translateY(-20px);
+       }
+
+       100% {
+           opacity: 1;
+           transform: translateY(0);
+       }
+   }
+
+   #search-section,
+   #clothes-menu-section {
+       animation: fadeIn 1s ease-in-out;
+       position: relative;
+       overflow: hidden;
+   }
+</style>
 
 <?php
     //check if id is passed

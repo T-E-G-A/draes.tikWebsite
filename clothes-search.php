@@ -84,10 +84,7 @@
        overflow: hidden;
    }
 
-   #search-section form {
-       animation: fadeIn 1s ease-in-out;
-       animation-delay: 0.2s; /* Adjust this delay as needed */
-   }
+   
 
  
 </style>
