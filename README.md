@@ -15,12 +15,12 @@ This is an e-commerce Website , designed using html,css and php.
 
 
 ## Pages on this Complete Free Template
-1. **index.html** - Home Page (Search clothes, Some Categories, Featured clothes, Social Media links)
-2. **categories.html** - List all Categories on Single Page
-3. **clothes.html** - List all clothes on a single page
-4. **order.html** - Page to Order Selected clothes
-5. **category_clothes.html** - Page to list all the clothes based on Category Selected
-6. **clothes_search.html** - Page to list all the clothes based on Search keyword
+1. **index.php** - Home Page (Search clothes, Some Categories, Featured clothes, Social Media links)
+2. **categories.php** - List all Categories on Single Page
+3. **clothes.php** - List all clothes on a single page
+4. **order.php** - Page to Order Selected clothes
+5. **category_clothes.php** - Page to list all the clothes based on Category Selected
+6. **clothes_search.php** - Page to list all the clothes based on Search keyword
 
 
 ## For Sponsor or Project Enquiry
