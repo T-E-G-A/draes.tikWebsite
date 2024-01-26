@@ -14,7 +14,7 @@ This is an e-commerce Website , designed using html,css and php.
 3. PHP8
 
 
-## Pages on this Complete Free Template
+## Pages on this site
 1. **index.php** - Home Page (Search clothes, Some Categories, Featured clothes, Social Media links)
 2. **categories.php** - List all Categories on Single Page
 3. **clothes.php** - List all clothes on a single page
